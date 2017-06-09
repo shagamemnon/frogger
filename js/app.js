@@ -1,5 +1,5 @@
 // Initiate event listeners for mobile and desktop via jQuery
-$(function(){
+$(function() {
     document.addEventListener('keyup', function(e) {
         var allowedKeys = {
             37: 'left',
@@ -8,12 +8,12 @@ $(function(){
             40: 'down'
         };
         player.handleInput(allowedKeys[e.keyCode]);
-    })
-    $('#controls span').on("click", function(){
+    });
+    $('#controls span').on("click", function() {
         var direction = $(this).attr('data-navigate');
         player.handleInput(direction);
     });
-    $('#controls span').on("touchstart", function(e){
+    $('#controls span').on("touchstart", function(e) {
         e.preventDefault();
         var direction = $(this).attr('data-navigate');
         player.handleInput(direction);
@@ -42,7 +42,7 @@ Game.prototype.constructor = Game;
 
 
 Game.prototype.addScore = function() {
-    return $('#counter').hide().delay( 50 ).fadeIn( 250 ).attr('tabindex',score++).text(score);
+    return $('#counter').hide().delay(50).fadeIn(250).attr('tabindex', score++).text(score);
 };
 
 // Create Character constructor
@@ -57,23 +57,23 @@ var Character = function(x, y, avatar, height, width) {
 
 // Create Enemy object
 var Enemy = function(x, y, avatar, height, width) {
-    this.avatar = document.getElementById('enemy')
+    this.avatar = document.getElementById('enemy');
     Character.call(this, x, y, this.avatar, this.height, this.width);
-}
+};
 Enemy.prototype = Object.create(Character.prototype);
 Enemy.prototype.constructor = Enemy;
 
 Enemy.prototype.update = function(x, y, dt) {
     var i = 0;
     var speed = util.randomNumber(1.75, 5.5);
-    speed * dt;
+    Number(speed * dt);
     while (i < speed) {
-        this.x++, i++;
+        this.x++;
+        i++;
     }
 };
 
 Enemy.prototype.render = function(x, y, avatar) {
-    // !! Recommended Code
     ctx.drawImage(this.avatar, this.x, this.y);
 };
 
@@ -143,25 +143,24 @@ var game = new Game(3, util.randomNumber(400, 570)),
 
 var checkCollisions = function() {
     allEnemies.forEach(function(elem, i, arr) {
-        setTimeout(function(){
+        setTimeout(function() {
             if (elem.x > 0 && elem.x < 500) {
-            if (elem.x < player.x + player.width &&
-                elem.x + elem.width > player.x &&
-                elem.y < (player.y) + (player.height) &&
-                elem.height + elem.y > (player.y)) {
+                if (elem.x < player.x + player.width &&
+                    elem.x + elem.width > player.x &&
+                    elem.y < (player.y) + (player.height) &&
+                    elem.height + elem.y > (player.y)) {
                     return player.squareOne();
+                }
             }
-        }
-    }, 100)
-    })
+        }, 100);
+    });
 };
 
 function generateEnemies() {
     var enemy = new Enemy(util.randomNumber(-220, -300), util.randomNumber(120, 220));
 
     var cHeight = $('#canvas').height(),
-        cWidth = $('#canvas').width(),
-        offBoard = cWidth + enemy.avatar.height;
+        cWidth = $('#canvas').width();
 
     for (var i = 0; i < game.enemyCount; i++) {
         allEnemies.push(enemy);
