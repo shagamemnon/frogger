@@ -1,3 +1,110 @@
 body {
-    text-align: center;
+  text-align: center;
+  margin: auto;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.player-selection {
+  display: flex;
+  justify-content: center;
+  transition: 300ms;
+}
+
+.player {
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  height: 100px;
+  width: auto;
+  margin-top: 400px;
+  transition: 400ms;
+}
+
+.moveDown {
+  display: block;
+  margin-top: 490px;
+  transition: 400ms;
+}
+
+#canvas {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  text-align: center;
+  margin: auto;
+  right: 0;
+  transition: 0ms;
+  display: block;
+  opacity: 0;
+}
+
+.active {
+  opacity: 1 !important;
+  transition: 350ms ease-out;
+}
+
+.game-scoreboard {
+  height: 32px;
+  display: block;
+  margin: auto;
+  padding-top: 30px;
+  width: 600px
+}
+
+.game-scoreboard .row {
+  display: flex;
+  width: 49%;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.game-scoreboard .row:first-child {
+  float: left;
+  color: #aaa;
+}
+
+.game-scoreboard .row:last-child {
+  float: right;
+}
+
+.game-scoreboard .row span:first-child {
+  font-size: 20px;
+  line-height: 10px;
+  text-transform: uppercase;
+}
+
+.game-scoreboard .row span:last-child {
+  font-size: 48px;
+  line-height: 20px;
+}
+
+.game-score {
+  padding: 5px;
+  font-weight: bold;
+}
+
+.pause-button,
+.play-button {
+  background-position: bottom;
+  height: 100px;
+  background-repeat: no-repeat;
+  margin-top: 600px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  display: none;
+}
+
+.pause-button {
+  background-image: url("../images/pause.png");
+  background-size: auto 100px;
+}
+
+.play-button {
+  background-image: url("../images/play.png");
+  background-size: auto 80px;
 }
